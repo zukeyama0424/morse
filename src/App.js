@@ -75,6 +75,7 @@ export default function App() {
     }
   };
 
+  //テスト
   const handleClear = () => {
     setText("");
     setMorseChange("");
