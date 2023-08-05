@@ -1,4 +1,4 @@
-import "./styles.css";
+import styled from "styled-components";
 import { useState } from "react";
 
 export default function App() {
@@ -8,13 +8,18 @@ export default function App() {
   const handleChageText = (e) => {
     setText(e.target.value);
   };
+
+  // 「ー」を入力
   const handleAddDash = () => {
     setText(text + "ー");
   };
+
+  // 「・」を入力
   const handleAddDot = () => {
     setText(text + "・");
   };
 
+  // モールス信号を変換
   const handleMorse = () => {
     if (text === "・ー") {
       setMorseChange("A");
@@ -75,21 +80,32 @@ export default function App() {
     }
   };
 
-  //テスト
+  //　文字クリア
   const handleClear = () => {
     setText("");
     setMorseChange("");
   };
 
+  // 1文字削除
+  const handleOneCharacterDelete = () => {
+    setText(text.slice(0, -1));
+  };
+
   return (
     <div className="App">
       <input value={text} onChange={handleChageText} />
-      <button onClick={handleAddDash}>ー</button>
-      <button onClick={handleAddDot}>・</button>
+      <Button1 onClick={handleAddDash}>ー</Button1>
+      <Button1 onClick={handleAddDot}>・</Button1>
+      <br />
       <button onClick={handleMorse}>変換</button>
+      <button onClick={handleOneCharacterDelete}>1文字削除</button>
       <button onClick={handleClear}>クリア</button>
       <br />
       {morseChange}
     </div>
   );
 }
+
+const Button1 = styled.button`
+  margin-left: 10px;
+`;
